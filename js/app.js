@@ -1,16 +1,29 @@
-/*
- * Create a list that holds all of your cards
- */
+// Create a list that holds all 16 cards */
 
+let typeOfCards = [
+    "fa-diamond",
+    "fa-diamond",
+    "fa-paper-plane-o",
+    "fa-paper-plane-o",
+    "fa-anchor",
+    "fa-anchor",
+    "fa-boltfa-cube",
+    "fa-boltfa-cube",
+    "fa-leaf",
+    "fa-leaf",
+    "fa-bicycle",
+    "fa-bicycle",
+    "fa-bomb",
+    "fa-bomb",
+    "fa-bolt",
+    "fa-bolt",
+    "fa-cube",
+    "fa-cube"
+];
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
+// Shuffle the list of cards //
+// Shuffle function from http://stackoverflow.com/a/2450976 //
 
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -25,6 +38,15 @@ function shuffle(array) {
     return array;
 }
 
+shuffle(typeOfCards);
+
+// Select all i-tags inside the cards and add the typeOfCards as classes
+
+const singleMotive = document.querySelectorAll('.card i');
+
+for(let i = 0; i < singleMotive.length; i++){
+  singleMotive[i].classList.add(shuffle(typeOfCards[i]));
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
