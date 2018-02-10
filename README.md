@@ -65,17 +65,11 @@ for(let i = 0; i < singleCard.length; i++){
 
 ## The player then turns over a second card
 
-The clicks will be counted. For the rating function, the clicks will also be used so they will be stored into the variable `moves`). After every second click, the following action will be performed:
+The clicks will be counted. For the rating function, the clicks will also be used so they will be stored in the variable `moves`). After every second click (`moves % 2 === 0`), the following action will be performed:
 
 ## If the cards match, both cards stay flipped over
 
-The classes of the two i-tags of the cards will be compared, for example:
-
-```
-if ("fa-diamond" == "fa-paper-plane-o") {}
-```
-
-If the css classes equal, add a .match class to the card. The eventListener has to be removed from these two cards.
+The classes of the two i-tags of the cards will be compared (p.e. `if ("fa-diamond" == "fa-paper-plane-o")`). If the classes equal, a `.match` is added to the card:
 
 ```
 <li class="card match">
@@ -83,7 +77,11 @@ If the css classes equal, add a .match class to the card. The eventListener has 
 </li>
 ```
 
-If they do not equal, all additional classes will be remained so that the "back" side of the card is shown again.
+The eventListener has to be removed from these two cards.
+
+## If the cards do not match, both cards are flipped face down
+
+If the classes do not equal, all additional classes will be removed so that the "back" of the card is shown again:
 
 ```
 <li class="card">
@@ -91,17 +89,9 @@ If they do not equal, all additional classes will be remained so that the "back"
 </li>
 ```
 
-## If the cards do not match, both cards are flipped face down
-
-```
-if "fa-diamond" == "fa-paper-plane-o" is false...
-```
-
-... set the card font to display none again and show the card back.
-
 ## The game ends once all cards have been correctly matched
 
-TO DO
+The memory game has 16 cards with 8 possible matches. If two classes are equal, the `cardMatches` variable will be incremented by 1 (default value is set to 0). `if (cardMatches === 8)`, the game ends.
 
 ## Star rating
 
@@ -123,22 +113,26 @@ HTML for a blank star:
 <i class="fa fa-star-o"></i>
 ```
 
+The full inner HTML of `ul class="stars"` will be changed depending on the moves.
+
 ## Time counter
 
 When the window has completely loaded, a visible timer should start. It will stop when the game ends.
 
 ## Move counter
 
-The current number of moves (=clicks) are counted.
+This information will be stored in `moves` (default: 0). The current number of moves is counted as clicks on a `.card`. The `moves` decide when card pares are compared (after every 2 moves) and how the star rating will be displayed (see above).
 
 ## Reset Button
 
-The reset button resets the game board, the timer, and the star rating.
+The reset button resets
 
-The game board should be resetted by using *shuffle(typeOfCards);* again and removing all .open, .show und .match classes.
+*  the game board (remove all classes from `<li class="card">` except card (`.open`, `.show` and `.match`) and use the `shuffle(typeOfCards);` again)
+*  the timer (?)
+*  the star rating and move countin (`moves = 0;`)
 
-## When the game ends, a "congatulations" window will pop up
+## When the game ends, a "congratulations" window will pop up that...
 
-* a modal appears to congratulate the player and ask if they want to play again -> use the reset game function
-* and tells the user how much time it took to win the game -> show time count
-* and tells the user what the star rating was -> show star rating count
+* congratulates the player and ask if they want to play again (use the reset button)
+* tells the player how much time it took to win the game (show timer output)
+* tells the player what the star rating was (show rating output)
