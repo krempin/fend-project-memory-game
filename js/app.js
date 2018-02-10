@@ -64,6 +64,8 @@ for(let i = 0; i < singleCard.length; i++){
 }
 
 // Display star rating
+// one click on .card = one move
+// 3 stars: 0 to 16 moves, 2 stars: 17 to 32 moves, 1 star: from 33 moves on
 
 const displayRating = document.querySelector('ul.stars');
 
