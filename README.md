@@ -6,7 +6,7 @@ This is one of my projects for the Udacity Front End Nanodegree program. For the
 
 ## The cards are arranged randomly on the grid
 
-The class names that will make up these motives ("fa-diamond"; "fa-paper-plane-o"; "fa-anchor"; "fa-boltfa-cube"; "fa-leaf"; "fa-bicycle"; "fa-bomb"; "fa-bolt"; "fa-cube")) will be stored twice in an array *typeOfCards* and will be shuffled by using *shuffle(typeOfCards)* function.
+The class names that will make up these motives (`"fa-diamond"` `"fa-paper-plane-o"`; `"fa-anchor"` `"fa-boltfa-cube"` `"fa-leaf"` `"fa-bicycle"` `"fa-bomb"` `"fa-bolt"` `"fa-cube"`) will be stored twice in an array `typeOfCards` and will be shuffled by using `shuffle(typeOfCards)` function.
 
 ## The deck is made up of eight different pairs of cards, each with different symbols on one side
 
