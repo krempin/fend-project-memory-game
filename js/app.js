@@ -1,3 +1,7 @@
+// Set variables
+
+let moves = 0;
+
 // Create a list that holds all 16 cards */
 
 let typeOfCards = [
@@ -54,7 +58,8 @@ const singleCard = document.querySelectorAll('.card');
 
 for(let i = 0; i < singleCard.length; i++){
   singleCard[i].addEventListener('click', function () {
-    console.log('The heading was clicked!');
+    moves = [i]; // counts the moves the player needs to finish the game
+    document.querySelector('span.moves').textContent = i++;
   });
 }
 
