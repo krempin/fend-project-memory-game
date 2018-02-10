@@ -48,6 +48,16 @@ for(let i = 0; i < singleMotive.length; i++){
   singleMotive[i].classList.add(shuffle(typeOfCards[i]));
 }
 
+// Set up the event listener for all cards
+
+const singleCard = document.querySelectorAll('.card');
+
+for(let i = 0; i < singleCard.length; i++){
+  singleCard[i].addEventListener('click', function () {
+    console.log('The heading was clicked!');
+  });
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
