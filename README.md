@@ -42,7 +42,7 @@ There has to be a "front" side and a "back" side of each card. The back side is 
 </li>
 ```
 
-When a card is clicked, the front side will displayed by adding the classes .open .show to the outer HTML:
+When a card is clicked, the front side will be displayed by adding the classes `.open` and `.show` to the outer HTML:
 
 ```
 <li class="card open show">
@@ -55,17 +55,17 @@ When a card is clicked, the front side will displayed by adding the classes .ope
 Adding an event listener which starts animation when clicking on one card is necessary.
 
 ```
-var singleCard = document.querySelectorAll('.card');
-for(var i=0; i < singleCard.length; i++){
+const singleCard = document.querySelectorAll('.card');
+for(let i = 0; i < singleCard.length; i++){
   singleCard[i].addEventListener('click', function () {
-    // Do something
+    // DO SOMETHING
   });
 }
 ```
 
 ## The player then turns over a second card
 
-The clicks will be counted. It will be possible to make a second click and after that the following action will be performed.
+The clicks will be counted. For the rating function, the clicks will also be used so they will be stored into the variable `moves`). After every second click, the following action will be performed:
 
 ## If the cards match, both cards stay flipped over
 
@@ -105,7 +105,23 @@ TO DO
 
 ## Star rating
 
-The rating is from 1 to 3 stars and will start with three stars. After x clicks on the cards, the rating should first change to 2 stars and finally to 1 star.
+The rating is from 1 to 3 stars and will start with 3 stars. The more moves the player needs to end the game, the less stars he will get (one move correlates with one click on a `.card`):
+
+* 3 stars: 0 to 16 moves
+* 2 stars: 17 to 32 moves
+* 1 star: from 33 moves on
+
+HTML for a full star:
+
+```
+<i class="fa fa-star"></i>
+```
+
+HTML for a blank star:
+
+```
+<i class="fa fa-star-o"></i>
+```
 
 ## Time counter
 
