@@ -6,21 +6,16 @@ This is one of my projects for the Udacity Front End Nanodegree program. For the
 
 ## The cards are arranged randomly on the grid
 
-The class names that will make up these motives ("fa-diamond"; "fa-paper-plane-o"; "fa-anchor"; "fa-boltfa-cube"; "fa-leaf"; "fa-bicycle"; "fa-bomb"; "fa-bolt"; "fa-cube")) will be stored in an array. At next, we uses the class names twice (as each pair of cards needs a class), looping the array twice and using the shuffle function to get them randomly.
-
-```
-function shuffle(array) {
-    ...
-    return array;
-}
-```
+The class names that will make up these motives ("fa-diamond"; "fa-paper-plane-o"; "fa-anchor"; "fa-boltfa-cube"; "fa-leaf"; "fa-bicycle"; "fa-bomb"; "fa-bolt"; "fa-cube")) will be stored twice in an array *typeOfCards* and will be shuffled by using *shuffle(typeOfCards)* function.
 
 ## The deck is made up of eight different pairs of cards, each with different symbols on one side
 
-Every card is represented by this tag:
+As this code is the one all cards have in common, every card on the HTML consists of the following:
 
 ```
-<li class="card"></li>
+<li class="card">
+  <i class="fa"></i>
+</li>
 ```
 
 The card gets its unique motive with Font Awesome and the i-Tag:
@@ -34,27 +29,35 @@ The card gets its unique motive with Font Awesome and the i-Tag:
 Javascript will be used to add i-Tags and classes to all cards:
 
 ```
-.insertAdjacentHTML(afterbegin, );
+singleMotive[i].classList.add(...);
 ```
 
 ## The cards are arranged with the symbol face down
 
-There has to be a front side and a back side of each card. As default, the back side is displayed and the front side will not be displayed using
+There has to be a "front" side and a "back" side of each card. The back side is displayed as default:
 
 ```
-display:none;
+<li class="card">
+  <i class="fa fa-bomb"></i>
+</li>
 ```
 
-As soon as the card is clicked, display will be changed from none to block using an animation.
+When a card is clicked, the front side will displayed by adding the classes .open .show to the outer HTML:
+
+```
+<li class="card open show">
+  <i class="fa fa-bolt"></i>
+</li>
+```
 
 ## The player flips one card over to reveal its underlying symbol
 
 Adding an event listener which starts animation when clicking on one card is necessary.
 
 ```
-var eachCard = document.querySelectorAll('.card');
-for(var i=0; i < eachCard.length; i++){
-  eachCard[i].addEventListener('click', function () {
+var singleCard = document.querySelectorAll('.card');
+for(var i=0; i < singleCard.length; i++){
+  singleCard[i].addEventListener('click', function () {
     // Do something
   });
 }
@@ -62,19 +65,31 @@ for(var i=0; i < eachCard.length; i++){
 
 ## The player then turns over a second card
 
-After the second click, the classnames of the cards will be compared, for example:
-
-```
-"fa-diamond" == "fa-paper-plane-o"
-```
+The clicks will be counted. It will be possible to make a second click and after that the following action will be performed.
 
 ## If the cards match, both cards stay flipped over
 
+The classes of the two i-tags of the cards will be compared, for example:
+
 ```
-if "fa-diamond" == "fa-paper-plane-o" is true...
+if ("fa-diamond" == "fa-paper-plane-o") {}
 ```
 
-... remove the event listener from the cards and do not let them flip back to their back side
+If the css classes equal, add a .match class to the card. The eventListener has to be removed from these two cards.
+
+```
+<li class="card match">
+  <i class="fa fa-anchor"></i>
+</li>
+```
+
+If they do not equal, all additional classes will be remained so that the "back" side of the card is shown again.
+
+```
+<li class="card">
+  <i class="fa fa-anchor"></i>
+</li>
+```
 
 ## If the cards do not match, both cards are flipped face down
 
@@ -103,6 +118,8 @@ The current number of moves (=clicks) are counted.
 ## Reset Button
 
 The reset button resets the game board, the timer, and the star rating.
+
+The game board should be resetted by using *shuffle(typeOfCards);* again and removing all .open, .show und .match classes.
 
 ## When the game ends, a "congatulations" window will pop up
 
