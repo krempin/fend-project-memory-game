@@ -63,6 +63,18 @@ for(let i = 0; i < singleCard.length; i++){
   });
 }
 
+// Display star rating
+
+const displayRating = document.querySelector('ul.stars');
+
+if (moves <= 16) {
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+} else if (moves < 33) {
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>';
+} else {
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
+}
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
