@@ -26,16 +26,7 @@ let typeOfCards = [
 let moves = 0;
 let matches = 0;
 shuffle(typeOfCards);
-
-// Reset the game
-
-document.querySelector('.restart').addEventListener('click', function () {
-  // TO DO add everything that is needed for a restart
-  console.log('Click');
-  moves = 0;
-  matches = 0;
-  // remove alle classes except card from li
-});
+let openedCards = []; // array that holds the the actual opened cards
 
 // Shuffle the list of cards //
 // Shuffle function from http://stackoverflow.com/a/2450976 //
@@ -56,16 +47,19 @@ function shuffle(array) {
 
 // Select all i-tags inside the cards and add the typeOfCards as classes
 
+const singleCard = document.querySelectorAll('.card');
 const singleMotive = document.querySelectorAll('.card i');
+
 
 for(let i = 0; i < singleMotive.length; i++){
     singleMotive[i].classList.add(shuffle(typeOfCards[i]));
+
+    // Add classes to cards for comparing matches
+    singleCard[i].classList.add(shuffle(typeOfCards[i]));
 }
 
 
 // Set up the event listener for all cards (not opened yet)
-
-const singleCard = document.querySelectorAll('.card');
 
 for(let i = 0; i < singleCard.length; i++){
 
@@ -74,6 +68,7 @@ for(let i = 0; i < singleCard.length; i++){
     function cardClickFunction() {
       this.classList.add('open','show');
       this.classList.remove('closed');
+      openedCards.push(singleCard[i].className);
 
       // counts the moves the player needs to finish the game
       moves += 1;
@@ -83,13 +78,23 @@ for(let i = 0; i < singleCard.length; i++){
       // removes listener so that openend cards cannot be clicked again
       singleCard[i].removeEventListener('click', cardClickFunction);
 
-      // matches cards if there are two cards open
-      if (moves % 2 === 0) {
-        console.log('Zweiter Zug');
+      if (moves !==0 && moves % 2 === 0) {
+        matchCards();
       }
+
     }
 
     singleCard[i].addEventListener('click', cardClickFunction);
+  }
+}
+
+// Matching card function
+
+function matchCards () {
+  if (openedCards[0] == openedCards[1]) {
+    // if cards match
+  } else {
+    // if cards do not match
   }
 }
 
@@ -116,8 +121,6 @@ function changeRating() {
   }
 
 }
-
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
