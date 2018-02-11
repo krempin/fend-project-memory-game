@@ -138,11 +138,7 @@ This information will be stored in `moves` (default: 0). The current number of m
 
 ## Reset Button
 
-The reset button resets
-
-*  the game board (remove all classes from `<li class="card">` except card (`.open`, `.show` and `.match`) and use the `shuffle(typeOfCards);` again)
-*  the timer (?)
-*  the star rating and move countin (`moves = 0;`)
+The reset button resets the game board, the timer and the star rating via `location.reload()`.
 
 ## When the game ends, a "congratulations" window will pop up that...
 
