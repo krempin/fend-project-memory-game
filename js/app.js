@@ -58,7 +58,13 @@ const singleCard = document.querySelectorAll('.card');
 
 for(let i = 0; i < singleCard.length; i++){
   singleCard[i].addEventListener('click', function () {
-    moves = [i]; // counts the moves the player needs to finish the game
+
+    // shows the front side of the memory card
+    this.classList.add('open');
+    this.classList.add('show');
+
+    // counts the moves the player needs to finish the game
+    moves = [i];
     document.querySelector('span.moves').textContent = i++;
   });
 }
