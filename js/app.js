@@ -62,29 +62,35 @@ for(let i = 0; i < singleMotive.length; i++){
     singleMotive[i].classList.add(shuffle(typeOfCards[i]));
 }
 
-// Set up the event listener for all cards
+
+// Set up the event listener for all cards (not opened yet)
 
 const singleCard = document.querySelectorAll('.card');
 
 for(let i = 0; i < singleCard.length; i++){
-  singleCard[i].addEventListener('click', function () {
 
-    // shows the front side of the memory card
-    this.classList.add('open');
-    this.classList.add('show');
+  if (singleCard[i].classList.contains('closed')) {
 
-    // counts the moves the player needs to finish the game
-    moves += 1;
-    document.querySelector('span.moves').textContent = moves;
-    changeRating(moves);
+    function cardClickFunction() {
+      this.classList.add('open','show');
+      this.classList.remove('closed');
 
-    // matches cards if there are two cards open
+      // counts the moves the player needs to finish the game
+      moves += 1;
+      document.querySelector('span.moves').textContent = moves;
+      changeRating(moves);
 
-    if (moves % 2 === 0) {
-      // TO DO compare the classes of the opened cards
+      // removes listener so that openend cards cannot be clicked again
+      singleCard[i].removeEventListener('click', cardClickFunction);
+
+      // matches cards if there are two cards open
+      if (moves % 2 === 0) {
+        console.log('Zweiter Zug');
+      }
     }
 
-  });
+    singleCard[i].addEventListener('click', cardClickFunction);
+  }
 }
 
 // Display star rating
@@ -123,5 +129,3 @@ function changeRating() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
-// Start the game with default values
