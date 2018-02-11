@@ -1,7 +1,3 @@
-// Set variables
-
-let moves = 0;
-
 // Create a list that holds all 16 cards */
 
 let typeOfCards = [
@@ -25,6 +21,22 @@ let typeOfCards = [
     "fa-cube"
 ];
 
+// Set everything the game needs to start
+
+let moves = 0;
+let matches = 0;
+shuffle(typeOfCards);
+
+// Reset the game
+
+document.querySelector('.restart').addEventListener('click', function () {
+  // TO DO add everything that is needed for a restart
+  console.log('Click');
+  moves = 0;
+  matches = 0;
+  // remove alle classes except card from li
+});
+
 // Shuffle the list of cards //
 // Shuffle function from http://stackoverflow.com/a/2450976 //
 
@@ -41,8 +53,6 @@ function shuffle(array) {
 
     return array;
 }
-
-shuffle(typeOfCards);
 
 // Select all i-tags inside the cards and add the typeOfCards as classes
 
@@ -67,6 +77,7 @@ for(let i = 0; i < singleCard.length; i++){
     moves += 1;
     document.querySelector('span.moves').textContent = moves;
     changeRating(moves);
+
   });
 }
 
@@ -106,3 +117,5 @@ function changeRating() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+// Start the game with default values
