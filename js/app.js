@@ -70,11 +70,17 @@ for(let i = 0; i < singleCard.length; i++){
 const displayRating = document.querySelector('ul.stars');
 
 if (moves <= 16) {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>';
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
+                              '<li><i class="fa fa-star"></i></li>' +
+                              '<li><i class="fa fa-star"></i></li>';
 } else if (moves < 33) {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li>';
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
+                              '<li><i class="fa fa-star"></i></li>' +
+                              '<li><i class="fa fa-star-o"></i></li>';
 } else {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star-o"></i></li><li><i class="fa fa-star-o"></i></li>';
+    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
+                              '<li><i class="fa fa-star-o"></i></li>' +
+                              '<li><i class="fa fa-star-o"></i></li>';
 }
 
 /*
