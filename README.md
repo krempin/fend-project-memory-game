@@ -37,7 +37,7 @@ singleMotive[i].classList.add(...);
 There has to be a "front" side and a "back" side of each card. The back side is displayed as default:
 
 ```
-<li class="card">
+<li class="card closed">
   <i class="fa fa-bomb"></i>
 </li>
 ```
@@ -52,16 +52,31 @@ When a card is clicked, the front side will be displayed by adding the classes `
 
 ## The player flips one card over to reveal its underlying symbol
 
-Adding an event listener which starts animation when clicking on one card is necessary.
+Adding an event listener which adds `.open` and `.show` and starts animation when clicking on one card is necessary.
 
 ```
 const singleCard = document.querySelectorAll('.card');
+
 for(let i = 0; i < singleCard.length; i++){
-  singleCard[i].addEventListener('click', function () {
-    // DO SOMETHING
-  });
+
+  if (singleCard[i].classList.contains('closed')) {
+
+    function cardClickFunction() {
+
+      [...]
+
+      // removes listener so that openend cards cannot be clicked again
+      singleCard[i].removeEventListener('click', cardClickFunction);
+
+      }
+    }
+
+    singleCard[i].addEventListener('click', cardClickFunction);
+  }
 }
 ```
+
+The eventListener will be removed immediately to prevent the card from being clicked again.
 
 ## The player then turns over a second card
 
@@ -77,14 +92,12 @@ The classes of the two i-tags of the cards will be compared (p.e. `if ("fa-diamo
 </li>
 ```
 
-The eventListener has to be removed from these two cards.
-
 ## If the cards do not match, both cards are flipped face down
 
 If the classes do not equal, all additional classes will be removed so that the "back" of the card is shown again:
 
 ```
-<li class="card">
+<li class="card closed">
   <i class="fa fa-anchor"></i>
 </li>
 ```
@@ -104,16 +117,16 @@ The rating is from 1 to 3 stars and will start with 3 stars. The more moves the 
 HTML for a full star:
 
 ```
-<i class="fa fa-star"></i>
+<i class="fas fa-star"></i>
 ```
 
 HTML for a blank star:
 
 ```
-<i class="fa fa-star-o"></i>
+<i class="far fa-star"></i>
 ```
 
-The full inner HTML of `ul class="stars"` will be changed depending on the moves.
+The full inner HTML of `ul class="stars"` will be changed depending on the number of moves.
 
 ## Time counter
 
