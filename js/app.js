@@ -66,6 +66,7 @@ for(let i = 0; i < singleCard.length; i++){
     // counts the moves the player needs to finish the game
     moves += 1;
     document.querySelector('span.moves').textContent = moves;
+    changeRating(moves);
   });
 }
 
@@ -73,21 +74,27 @@ for(let i = 0; i < singleCard.length; i++){
 // one click on .card = one move
 // 3 stars: 0 to 16 moves, 2 stars: 17 to 32 moves, 1 star: from 33 moves on
 
-const displayRating = document.querySelector('ul.stars');
+function changeRating() {
 
-if (moves <= 16) {
-    displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
-                              '<li><i class="fas fa-star"></i></li>' +
-                              '<li><i class="fas fa-star"></i></li>';
-} else if (moves < 33) {
-    displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
-                              '<li><i class="fas fa-star"></i></li>' +
-                              '<li><i class="far fa-star"></i></li>';
-} else {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="far fa-star"></i></li>' +
-                              '<li><i class="far fa-star"></i></li>';
+  const displayRating = document.querySelector('ul.stars');
+
+  if (moves <= 16) {
+      displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                                '<li><i class="fas fa-star"></i></li>' +
+                                '<li><i class="fas fa-star"></i></li>';
+  } else if (moves < 33) {
+      displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                                '<li><i class="fas fa-star"></i></li>' +
+                                '<li><i class="far fa-star"></i></li>';
+  } else {
+      displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
+                                '<li><i class="far fa-star"></i></li>' +
+                                '<li><i class="far fa-star"></i></li>';
+  }
+
 }
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
