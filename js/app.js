@@ -78,6 +78,12 @@ for(let i = 0; i < singleCard.length; i++){
     document.querySelector('span.moves').textContent = moves;
     changeRating(moves);
 
+    // matches cards if there are two cards open
+
+    if (moves % 2 === 0) {
+      // TO DO compare the classes of the opened cards
+    }
+
   });
 }
 
