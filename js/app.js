@@ -49,7 +49,7 @@ shuffle(typeOfCards);
 const singleMotive = document.querySelectorAll('.card i');
 
 for(let i = 0; i < singleMotive.length; i++){
-  singleMotive[i].classList.add(shuffle(typeOfCards[i]));
+    singleMotive[i].classList.add(shuffle(typeOfCards[i]));
 }
 
 // Set up the event listener for all cards
@@ -64,8 +64,8 @@ for(let i = 0; i < singleCard.length; i++){
     this.classList.add('show');
 
     // counts the moves the player needs to finish the game
-    moves = [i];
-    document.querySelector('span.moves').textContent = i++;
+    moves += 1;
+    document.querySelector('span.moves').textContent = moves;
   });
 }
 
@@ -76,17 +76,17 @@ for(let i = 0; i < singleCard.length; i++){
 const displayRating = document.querySelector('ul.stars');
 
 if (moves <= 16) {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="fa fa-star"></i></li>';
+    displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                              '<li><i class="fas fa-star"></i></li>' +
+                              '<li><i class="fas fa-star"></i></li>';
 } else if (moves < 33) {
-    displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="fa fa-star-o"></i></li>';
+    displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                              '<li><i class="fas fa-star"></i></li>' +
+                              '<li><i class="far fa-star"></i></li>';
 } else {
     displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
-                              '<li><i class="fa fa-star-o"></i></li>' +
-                              '<li><i class="fa fa-star-o"></i></li>';
+                              '<li><i class="far fa-star"></i></li>' +
+                              '<li><i class="far fa-star"></i></li>';
 }
 
 /*
