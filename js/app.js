@@ -25,6 +25,7 @@ let typeOfCards = [
 
 let moves = 0;
 let matches = 0;
+let stars = 3;
 shuffle(typeOfCards);
 let openedCards = []; // array that holds the the actual opened cards
 
@@ -93,6 +94,8 @@ for(let i = 0; i < singleCard.length; i++){
 function matchCards () {
   if (openedCards[0] == openedCards[1]) {
     // if cards match
+    matches += 1;
+    checkEndGame();
   } else {
     // if cards do not match
   }
@@ -107,14 +110,17 @@ function changeRating() {
   const displayRating = document.querySelector('ul.stars');
 
   if (moves <= 16) {
+      stars = 3;
       displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
                                 '<li><i class="fas fa-star"></i></li>' +
                                 '<li><i class="fas fa-star"></i></li>';
   } else if (moves < 33) {
+      stars = 2;
       displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
                                 '<li><i class="fas fa-star"></i></li>' +
                                 '<li><i class="far fa-star"></i></li>';
   } else {
+      stars = 1;
       displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
                                 '<li><i class="far fa-star"></i></li>' +
                                 '<li><i class="far fa-star"></i></li>';
@@ -122,9 +128,52 @@ function changeRating() {
 
 }
 
+// Modal settings
+// Source: https://www.w3schools.com/howto/howto_css_modals.asp
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function checkEndGame() {
+
+  // When all cards are matched, show the modal
+  if (matches === 8) {
+      modal.style.display = "block";
+  }
+
+}
+
 // Reset the game
 
 document.querySelector('.restart').addEventListener('click', function () {
+  location.reload()
+});
+
+// Modal contents
+
+document.querySelector('#modal-moves').textContent = moves;
+
+document.querySelector('#modal-stars').textContent = stars;
+
+document.querySelector('#play-again').addEventListener('click', function () {
   location.reload()
 });
 

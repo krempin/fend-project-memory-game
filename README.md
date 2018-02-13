@@ -104,7 +104,7 @@ If the classes do not equal, all additional classes will be removed so that the 
 
 ## The game ends once all cards have been correctly matched
 
-The memory game has 16 cards with 8 possible matches. If two classes are equal, the `cardMatches` variable will be incremented by 1 (default value is set to 0). `if (cardMatches === 8)`, the game ends.
+The memory game has 16 cards with 8 possible matches. If two classes are equal, the `matches` variable will be incremented by 1 (default value is set to 0). `if (matches === 8)`, the game ends. The match will be checked inside the `matchCards ()`.
 
 ## Star rating
 
@@ -140,8 +140,14 @@ This information will be stored in `moves` (default: 0). The current number of m
 
 The reset button resets the game board, the timer and the star rating via `location.reload()`.
 
-## When the game ends, a "congratulations" window will pop up that...
+## When the game ends, a "congratulations" modal will pop up
+
+When the cards match, `checkEndGame()` checks whether there are 8 matches. In this case, it will open the modal.
+
+The modal contains:
 
 * congratulates the player and ask if they want to play again (use the reset button)
 * tells the player how much time it took to win the game (show timer output)
 * tells the player what the star rating was (show rating output)
+
+The variables for that content will be set inside the modal by selecting and changing content this way: `document.querySelector('#modal-moves').textContent = moves;`.
