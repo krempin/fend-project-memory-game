@@ -23,11 +23,14 @@
         		<li><i class="fas fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">0</span> Moves
+        	<span class="moves">0</span> Moves</span>
 
-            <div class="restart">
+          <div class="restart">
         		<i class="fas fa-redo-alt"></i>
+            <span class="timer-caption">Play Time:</span>
+            <span id="minutes">00</span>:<span id="seconds">00</span>
         	</div>
+
         </section>
 
         <ul class="deck">
@@ -89,7 +92,7 @@
         <span class="close">&times;</span>
         <span class="success-icon"><i class="far fa-check-circle"></i></span>
         <h2>Congratulations! You Won!</h2>
-        <p>With <span id="modal-moves"></span> Moves and <span id="modal-stars"></span> Stars. <span id="modal-congrats"></span></p>
+        <p>With <span id="modal-moves"></span> Moves and <span id="modal-stars"></span> Stars. It took you <span id="modal-minutes">00</span>:<span id="modal-seconds">00</span> to solve the memory!</p>
         <div id="play-again">Play again!</div>
       </div>
 

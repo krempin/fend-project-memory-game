@@ -128,6 +128,25 @@ function changeRating() {
 
 }
 
+// Timer functionality
+// https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+
+let sec = 0;
+function count ( timeCount ) {
+  if (timeCount > 9) {
+    return timeCount;
+  } else {
+    return '0' + timeCount;
+  }
+
+}
+let timer = setInterval( function(){
+    document.getElementById("seconds").innerHTML=count(++sec%60);
+    document.getElementById("minutes").innerHTML=count(parseInt(sec/60,10));
+    document.getElementById("modal-seconds").innerHTML=count(++sec%60);
+    document.getElementById("modal-minutes").innerHTML=count(parseInt(sec/60,10));
+}, 1000);
+
 // Modal settings
 // Source: https://www.w3schools.com/howto/howto_css_modals.asp
 
@@ -156,6 +175,7 @@ function checkEndGame() {
 
   // When all cards are matched, show the modal
   if (matches === 8) {
+      clearInterval ( timer );
       modal.style.display = "block";
   }
 
