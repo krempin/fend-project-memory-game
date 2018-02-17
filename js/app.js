@@ -94,12 +94,20 @@ for(let i = 0; i < singleCard.length; i++){
 function matchCards () {
   if (openedCards[0] == openedCards[1]) {
     // if cards match
+    console.log('Match');
     matches += 1;
     checkEndGame();
+    openedCards[0] += " match";
+    openedCards[1] += " match";
+
   } else {
-    // if cards do not match
+    console.log('No match');
+    var ret = openedCards[0].replace('open show','closed');
+    var ret2 = openedCards[1].replace('open show','closed');
+    openedCards = [];
   }
 }
+
 
 // Display star rating
 // one click on .card = one move
@@ -132,6 +140,7 @@ function changeRating() {
 // https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
 
 let sec = 0;
+let secModal = 0;
 function count ( timeCount ) {
   if (timeCount > 9) {
     return timeCount;
@@ -141,33 +150,31 @@ function count ( timeCount ) {
 
 }
 let timer = setInterval( function(){
+
+    // Time counter for frontend
     document.getElementById("seconds").innerHTML=count(++sec%60);
     document.getElementById("minutes").innerHTML=count(parseInt(sec/60,10));
-    document.getElementById("modal-seconds").innerHTML=count(++sec%60);
-    document.getElementById("modal-minutes").innerHTML=count(parseInt(sec/60,10));
+
+    // Time counter for modal
+    document.getElementById("modal-seconds").innerHTML=count(++secModal%60);
+    document.getElementById("modal-minutes").innerHTML=count(parseInt(secModal/60,10));
+
 }, 1000);
 
-// Modal settings
+// Play again modal
 // Source: https://www.w3schools.com/howto/howto_css_modals.asp
 
-// Get the modal
-var modal = document.getElementById('myModal');
+var modalGameEnd = document.getElementById('gameFinishModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+    modalGameEnd.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == modalGameEnd) {
+        modalGameEnd.style.display = "none";
     }
 }
 
@@ -176,7 +183,7 @@ function checkEndGame() {
   // When all cards are matched, show the modal
   if (matches === 8) {
       clearInterval ( timer );
-      modal.style.display = "block";
+      modalGameEnd.style.display = "block";
   }
 
 }
