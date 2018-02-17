@@ -1,4 +1,6 @@
-// Create a list that holds all 16 cards */
+/**
+ * Create a list that holds all 16 cards
+ */
 
 let typeOfCards = [
     "fa-gem",
@@ -21,16 +23,9 @@ let typeOfCards = [
     "fa-cube"
 ];
 
-// Set everything the game needs to start
-
-let moves = 0;
-let matches = 0;
-let stars = 3;
-shuffle(typeOfCards);
-let openedCards = []; // array that holds the the actual opened cards
-
-// Shuffle the list of cards //
-// Shuffle function from http://stackoverflow.com/a/2450976 //
+/** Shuffle the list of cards
+ * function source: http://stackoverflow.com/a/2450976
+ */
 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -46,107 +41,137 @@ function shuffle(array) {
     return array;
 }
 
-// Select all i-tags inside the cards and add the typeOfCards as classes
+/**
+ * Everything to start the game:
+ * Create a list that holds all 16 cards
+ * moves: counts every time a closed card is clicked
+ * matches: counts every card match, game will end at 8 matches
+ * stars: rating from 3 to 1, depending on the count of moves, starts with 3
+ * openedCards: array that holds the the actual opened cards
+ */
+
+let moves = 0;
+let matches = 0;
+let stars = 3;
+shuffle(typeOfCards);
+let openedCards = []
+
+/**
+ *  Select all i-tags inside the cards and add the typeOfCards as classes
+ */
 
 const singleCard = document.querySelectorAll('.card');
 const singleMotive = document.querySelectorAll('.card i');
 
-
 for(let i = 0; i < singleMotive.length; i++){
+
     singleMotive[i].classList.add(shuffle(typeOfCards[i]));
 
     // Add classes to cards for comparing matches
     singleCard[i].classList.add(shuffle(typeOfCards[i]));
+
 }
 
-
-// Set up the event listener for all cards (not opened yet)
+/**
+ * Set up the event listener for all closed or unmatched cards
+ */
 
 for(let i = 0; i < singleCard.length; i++){
 
-  if (singleCard[i].classList.contains('closed')) {
+    if (singleCard[i].classList.contains('closed')) {
 
-    function cardClickFunction() {
-      this.classList.add('open','show');
-      this.classList.remove('closed');
-      openedCards.push(singleCard[i].className);
+        function cardClickFunction() {
+            this.classList.add('open','show');
+            this.classList.remove('closed');
+            openedCards.push(singleCard[i].className);
 
-      // counts the moves the player needs to finish the game
-      moves += 1;
-      document.querySelector('span.moves').textContent = moves;
-      changeRating(moves);
+            // Count the moves the player needs to finish the game
+            moves += 1;
+            document.querySelector('span.moves').textContent = moves;
+            changeRating(moves);
 
-      // removes listener so that openend cards cannot be clicked again
-      singleCard[i].removeEventListener('click', cardClickFunction);
+            // Remove listener so that openend cards cannot be clicked again
+            singleCard[i].removeEventListener('click', cardClickFunction);
 
-      if (moves !==0 && moves % 2 === 0) {
-        matchCards();
-      }
+            if (moves !==0 && moves % 2 === 0) {
+                matchCards();
+            }
 
+        }
+
+        singleCard[i].addEventListener('click', cardClickFunction);
     }
-
-    singleCard[i].addEventListener('click', cardClickFunction);
-  }
 }
 
-// Matching card function
+/**
+ * Match cards function
+ */
 
 function matchCards () {
-  if (openedCards[0] == openedCards[1]) {
-    // if cards match
-    console.log('Match');
-    matches += 1;
-    checkEndGame();
-    openedCards[0] += " match";
-    openedCards[1] += " match";
 
-  } else {
-    console.log('No match');
-    var ret = openedCards[0].replace('open show','closed');
-    var ret2 = openedCards[1].replace('open show','closed');
-    openedCards = [];
-  }
+    if (openedCards[0] == openedCards[1]) {
+        // if cards match
+        console.log('Match');
+        matches += 1;
+        checkEndGame();
+        openedCards[0] += " match";
+        openedCards[1] += " match";
+    } else {
+        console.log('No match');
+        var ret = openedCards[0].replace('open show','closed');
+        var ret2 = openedCards[1].replace('open show','closed');
+        openedCards = [];
+    }
+
 }
 
 
-// Display star rating
-// one click on .card = one move
-// 3 stars: 0 to 16 moves, 2 stars: 17 to 32 moves, 1 star: from 33 moves on
+/**
+ * Display star rating
+ * one click on .card.closed = one move
+ * 3 stars: 0 to 16 moves
+ * 2 stars: 17 to 32 moves
+ * 1 star: from 33 moves on
+ */
 
 function changeRating() {
 
-  const displayRating = document.querySelector('ul.stars');
+    const displayRating = document.querySelector('ul.stars');
 
-  if (moves <= 16) {
-      stars = 3;
-      displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
-                                '<li><i class="fas fa-star"></i></li>' +
-                                '<li><i class="fas fa-star"></i></li>';
-  } else if (moves < 33) {
-      stars = 2;
-      displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
-                                '<li><i class="fas fa-star"></i></li>' +
-                                '<li><i class="far fa-star"></i></li>';
-  } else {
-      stars = 1;
-      displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
-                                '<li><i class="far fa-star"></i></li>' +
-                                '<li><i class="far fa-star"></i></li>';
-  }
+    if (moves <= 16) {
+        stars = 3;
+        displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                                  '<li><i class="fas fa-star"></i></li>' +
+                                  '<li><i class="fas fa-star"></i></li>';
+    } else if (moves < 33) {
+        stars = 2;
+        displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
+                                  '<li><i class="fas fa-star"></i></li>' +
+                                  '<li><i class="far fa-star"></i></li>';
+    } else {
+        stars = 1;
+        displayRating.innerHTML = '<li><i class="fa fa-star"></i></li>' +
+                                  '<li><i class="far fa-star"></i></li>' +
+                                  '<li><i class="far fa-star"></i></li>';
+    }
 
 }
 
-// Timer functionality
-// https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+/**
+ * Timer functionality
+ * source: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript
+ */
 
 let sec = 0;
 let secModal = 0;
+
 function count ( timeCount ) {
-  if (timeCount > 9) {
-    return timeCount;
-  } else {
-    return '0' + timeCount;
-  }
+
+    if (timeCount > 9) {
+        return timeCount;
+    } else {
+        return '0' + timeCount;
+    }
 
 }
 let timer = setInterval( function(){
@@ -161,44 +186,58 @@ let timer = setInterval( function(){
 
 }, 1000);
 
-// Play again modal
-// Source: https://www.w3schools.com/howto/howto_css_modals.asp
+/**
+ * Play again modal
+ * source: https://www.w3schools.com/howto/howto_css_modals.asp
+ */
 
 var modalGameEnd = document.getElementById('gameFinishModal');
-
 var span = document.getElementsByClassName("close")[0];
 
 span.onclick = function() {
+
     modalGameEnd.style.display = "none";
+
 }
 
 window.onclick = function(event) {
+
     if (event.target == modalGameEnd) {
         modalGameEnd.style.display = "none";
     }
+
 }
+
+/**
+ * Check whether the game has ended
+ * source: https://www.w3schools.com/howto/howto_css_modals.asp
+ * when all cards are matched, show the modal and reset the timer
+ */
 
 function checkEndGame() {
 
-  // When all cards are matched, show the modal
-  if (matches === 8) {
-      clearInterval ( timer );
-      modalGameEnd.style.display = "block";
-  }
+    if (matches === 8) {
+        clearInterval ( timer );
+        modalGameEnd.style.display = "block";
+    }
 
 }
 
-// Reset the game
-
-document.querySelector('.restart').addEventListener('click', function () {
-  location.reload()
-});
-
-// Modal contents
+/**
+ * Modal contents
+ */
 
 document.querySelector('#modal-moves').textContent = moves;
 
 document.querySelector('#modal-stars').textContent = stars;
+
+/**
+ * Reset the game
+ */
+
+document.querySelector('.restart').addEventListener('click', function () {
+  location.reload()
+});
 
 document.querySelector('#play-again').addEventListener('click', function () {
   location.reload()
