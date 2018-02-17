@@ -53,7 +53,7 @@ h1 {
     background: #5f5571;
     background: linear-gradient(180deg, #36745d, #5f7b41, #cf962f, #bf663a, #8e3728);
     padding: 32px;
-    pdding: 2rem;
+    padding: 2rem;
     border-radius: 10px;
     border-radius: 0.625;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -75,7 +75,7 @@ h1 {
     font-size: 33px;
     font-size: 2.0625rem;
     border-radius: 8px;
-    border-radius: 2rem;
+    border-radius: 0.5rem;
     cursor: pointer;
     display: flex;
     justify-content: center;
