@@ -26,7 +26,7 @@ let typeOfCards = [
  */
 
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -219,8 +219,8 @@ let timer = setInterval( function(){
  * source: https://www.w3schools.com/howto/howto_css_modals.asp
  */
 
-var modalGameEnd = document.getElementById('gameFinishModal');
-var span = document.getElementsByClassName("close")[0];
+let modalGameEnd = document.getElementById('gameFinishModal');
+let span = document.getElementsByClassName("close")[0];
 
 span.onclick = function() {
 
