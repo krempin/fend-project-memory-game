@@ -79,6 +79,7 @@ for(let i = 0; i < singleCard.length; i++){
     if (singleCard[i].classList.contains('closed')) {
 
         function cardClickFunction() {
+
             this.classList.add('open','show');
             this.classList.remove('closed');
             openedCards.push(singleCard[i].className);
@@ -92,8 +93,9 @@ for(let i = 0; i < singleCard.length; i++){
                 matchCards();
             }
 
-            // Remove listener so that openend cards cannot be clicked again
-            singleCard[i].removeEventListener('click', cardClickFunction);
+            //if (singleCard[i].classList.contains('match')) {
+              // singleCard[i].removeEventListener('click', cardClickFunction);
+            //}
 
         }
 
@@ -111,20 +113,22 @@ function matchCards() {
         matches += 1;
         checkEndGame(matches);
         matchedCards();
+        return true;
     } else {
         noCardMatch();
+        return false;
     }
 
 }
 
 function matchedCards() {
 
-  const storage = document.querySelectorAll('.show');
-  for (let i = 0; i < 2; i++) {
-      storage[i].classList.add('match');
-      storage[i].classList.remove('show');
-  }
-  openedCards = [];
+    const storage = document.querySelectorAll('.show');
+    for (let i = 0; i < 2; i++) {
+        storage[i].classList.add('match');
+        storage[i].classList.remove('show');
+    }
+    openedCards = [];
 
 }
 
@@ -155,6 +159,7 @@ function noCardMatch() {
 function changeRating() {
 
     const displayRating = document.querySelector('ul.stars');
+    addContent();
 
     if (moves <= 16) {
         stars = 3;
@@ -192,6 +197,7 @@ function count ( timeCount ) {
     }
 
 }
+
 let timer = setInterval( function(){
 
     // Time counter for frontend
@@ -245,9 +251,13 @@ function checkEndGame() {
  * Modal contents
  */
 
+function addContent() {
+
 document.querySelector('#modal-moves').textContent = moves;
 
 document.querySelector('#modal-stars').textContent = stars;
+
+}
 
 /**
  * Reset the game
