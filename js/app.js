@@ -52,7 +52,7 @@ let moves = 0;
 let matches = 0;
 let stars = 3;
 shuffle(typeOfCards);
-let openedCards = []
+let openedCards = [];
 
 /**
  *  Select all i-tags inside the cards and add the typeOfCards as classes
@@ -85,6 +85,7 @@ for(let i = 0; i < singleCard.length; i++){
             openedCards.push(singleCard[i].className);
 
             if (openedCards.length == 2) {
+
                 matchCards();
 
                 // Count the moves the player needs to finish the game
@@ -133,18 +134,27 @@ function matchedCards() {
 }
 
 function noCardMatch() {
+    const storage = document.querySelectorAll('.show');
 
-    setTimeout(function(){
+    for (let i = 0; i < 2; i++) {
 
-        const storage = document.querySelectorAll('.show');
+      storage[i].classList.add('dismatch');
 
-        for (let i = 0; i < 2; i++) {
-            storage[i].classList.add('closed');
+      setTimeout(function(){
+
             storage[i].classList.remove('open', 'show');
-        }
-        openedCards = [];
 
+            setTimeout(function(){
+
+                storage[i].classList.remove('dismatch', 'dismatch');
+                storage[i].classList.add('closed');
+            },600);
+
+        openedCards = [];
+        
     },1000);
+
+    }
 
 }
 
