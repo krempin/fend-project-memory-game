@@ -76,32 +76,26 @@ for(let i = 0; i < singleMotive.length; i++){
 
 for(let i = 0; i < singleCard.length; i++){
 
-    if (singleCard[i].classList.contains('closed')) {
+    singleCard[i].addEventListener('click', cardClickFunction);
 
-        function cardClickFunction() {
+    function cardClickFunction() {
 
-            this.classList.add('open','show');
-            this.classList.remove('closed');
-            openedCards.push(singleCard[i].className);
+        this.classList.add('open','show');
+        this.classList.remove('closed');
+        openedCards.push(singleCard[i].className);
 
-            if (openedCards.length == 2) {
+        if (openedCards.length == 2) {
 
-                matchCards();
+            matchCards();
 
-                // Count the moves the player needs to finish the game
-                moves += 1;
-                document.querySelector('span.moves').textContent = moves;
-                changeRating(moves);
-            }
-
-            //if (singleCard[i].classList.contains('match')) {
-              // singleCard[i].removeEventListener('click', cardClickFunction);
-            //}
-
+            // Count the moves the player needs to finish the game
+            moves += 1;
+            document.querySelector('span.moves').textContent = moves;
+            changeRating(moves);
         }
 
-        singleCard[i].addEventListener('click', cardClickFunction);
     }
+
 }
 
 /**
@@ -151,7 +145,7 @@ function noCardMatch() {
             },600);
 
         openedCards = [];
-        
+
     },1000);
 
     }
