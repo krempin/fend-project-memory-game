@@ -228,3 +228,17 @@ h1 {
     text-decoration: none;
     cursor: pointer;
 }
+
+/*
+ * Timer Styling
+ */
+
+#minutes, #seconds {
+    width: 23px;
+    width: 1.5625rem;
+    display: inline-block;
+}
+
+#seconds {
+    text-align: right;
+}
