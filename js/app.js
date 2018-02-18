@@ -15,8 +15,6 @@ let typeOfCards = [
     "fa-lightbulb",
     "fa-bell",
     "fa-bell",
-    "fa-bomb",
-    "fa-bomb",
     "fa-bolt",
     "fa-bolt",
     "fa-cube",
@@ -90,12 +88,12 @@ for(let i = 0; i < singleCard.length; i++){
             document.querySelector('span.moves').textContent = moves;
             changeRating(moves);
 
-            // Remove listener so that openend cards cannot be clicked again
-            singleCard[i].removeEventListener('click', cardClickFunction);
-
             if (moves !==0 && moves % 2 === 0) {
                 matchCards();
             }
+
+            // Remove listener so that openend cards cannot be clicked again
+            singleCard[i].removeEventListener('click', cardClickFunction);
 
         }
 
@@ -107,24 +105,45 @@ for(let i = 0; i < singleCard.length; i++){
  * Match cards function
  */
 
-function matchCards () {
+function matchCards() {
 
     if (openedCards[0] == openedCards[1]) {
-        // if cards match
-        console.log('Match');
         matches += 1;
-        checkEndGame();
-        openedCards[0] += " match";
-        openedCards[1] += " match";
+        checkEndGame(matches);
+        matchedCards();
     } else {
-        console.log('No match');
-        var ret = openedCards[0].replace('open show','closed');
-        var ret2 = openedCards[1].replace('open show','closed');
-        openedCards = [];
+        noCardMatch();
     }
 
 }
 
+function matchedCards() {
+
+  console.log("Yes, it matched");
+  let storage = document.querySelectorAll('.show');
+  for (let i = 0; i < 2; i++) {
+    storage[i].classList.add('match');
+    storage[i].classList.remove('show');
+  }
+  openedCards = [];
+
+}
+
+function noCardMatch() {
+
+    setTimeout(function(){
+
+        let storage = document.querySelectorAll('.show');
+
+        for (let i = 0; i < 2; i++) {
+          storage[i].classList.add('closed');
+          storage[i].classList.remove('open', 'show');
+        }
+        openedCards = [];
+
+    },1000);
+
+}
 
 /**
  * Display star rating
