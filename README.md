@@ -80,7 +80,7 @@ The eventListener will be removed immediately to prevent the card from being cli
 
 ## The player then turns over a second card
 
-The clicks will be counted. For the rating function, the clicks will also be used so they will be stored in the variable `moves`). After every second click (`moves % 2 === 0`), the following action will be performed:
+The clicks will be counted. For the rating function, the clicks will also be used so they will be stored in the variable `moves`. After every move (two closed cards are clicked), the following action will be performed:
 
 ## If the cards match, both cards stay flipped over
 
@@ -108,11 +108,11 @@ The memory game has 16 cards with 8 possible matches. If two classes are equal, 
 
 ## Star rating
 
-The rating is from 1 to 3 stars and will start with 3 stars. The more moves the player needs to end the game, the less stars he will get (one move correlates with one click on a `.card`):
+The rating is from 1 to 3 stars and will start with 3 stars. The more moves the player needs to end the game, the less stars he will get (one move correlates with to closed `.card` which have been opened):
 
-* 3 stars: 0 to 16 moves
-* 2 stars: 17 to 32 moves
-* 1 star: from 33 moves on
+* 3 stars: 0 to 8 moves
+* 2 stars: 9 to 25 moves
+* 1 star: from 26 moves on
 
 HTML for a full star:
 

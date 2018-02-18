@@ -42,7 +42,7 @@ function shuffle(array) {
 /**
  * Everything to start the game:
  * Create a list that holds all 16 cards
- * moves: counts every time a closed card is clicked
+ * moves: counts every time 2 not yet matched cards are clicked
  * matches: counts every card match, game will end at 8 matches
  * stars: rating from 3 to 1, depending on the count of moves, starts with 3
  * openedCards: array that holds the the actual opened cards
@@ -84,13 +84,13 @@ for(let i = 0; i < singleCard.length; i++){
             this.classList.remove('closed');
             openedCards.push(singleCard[i].className);
 
-            // Count the moves the player needs to finish the game
-            moves += 1;
-            document.querySelector('span.moves').textContent = moves;
-            changeRating(moves);
-
-            if (moves !==0 && moves % 2 === 0) {
+            if (openedCards.length == 2) {
                 matchCards();
+
+                // Count the moves the player needs to finish the game
+                moves += 1;
+                document.querySelector('span.moves').textContent = moves;
+                changeRating(moves);
             }
 
             //if (singleCard[i].classList.contains('match')) {
@@ -151,9 +151,9 @@ function noCardMatch() {
 /**
  * Display star rating
  * one click on .card.closed = one move
- * 3 stars: 0 to 16 moves
- * 2 stars: 17 to 32 moves
- * 1 star: from 33 moves on
+ * 3 stars: 0 to 8 moves
+ * 2 stars: 9 to 25 moves
+ * 1 star: from 26 moves on
  */
 
 function changeRating() {
@@ -161,12 +161,12 @@ function changeRating() {
     const displayRating = document.querySelector('ul.stars');
     addContent();
 
-    if (moves <= 16) {
+    if (moves <= 8) {
         stars = 3;
         displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
                                   '<li><i class="fas fa-star"></i></li>' +
                                   '<li><i class="fas fa-star"></i></li>';
-    } else if (moves < 33) {
+    } else if (moves < 26) {
         stars = 2;
         displayRating.innerHTML = '<li><i class="fas fa-star"></i></li>' +
                                   '<li><i class="fas fa-star"></i></li>' +
