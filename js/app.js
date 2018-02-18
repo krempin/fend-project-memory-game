@@ -119,11 +119,10 @@ function matchCards() {
 
 function matchedCards() {
 
-  console.log("Yes, it matched");
-  let storage = document.querySelectorAll('.show');
+  const storage = document.querySelectorAll('.show');
   for (let i = 0; i < 2; i++) {
-    storage[i].classList.add('match');
-    storage[i].classList.remove('show');
+      storage[i].classList.add('match');
+      storage[i].classList.remove('show');
   }
   openedCards = [];
 
@@ -133,11 +132,11 @@ function noCardMatch() {
 
     setTimeout(function(){
 
-        let storage = document.querySelectorAll('.show');
+        const storage = document.querySelectorAll('.show');
 
         for (let i = 0; i < 2; i++) {
-          storage[i].classList.add('closed');
-          storage[i].classList.remove('open', 'show');
+            storage[i].classList.add('closed');
+            storage[i].classList.remove('open', 'show');
         }
         openedCards = [];
 
