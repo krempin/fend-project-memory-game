@@ -2,6 +2,8 @@
 
 This is one of my projects for the Udacity Front End Nanodegree program. For the source code from Udacity, see the original repository https://github.com/udacity/fend-project-memory-game
 
+![Screenshot](img/screenshot.png)
+
 **All functionalities of the memory game in detail:**
 
 ## The cards are arranged randomly on the grid
